@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simple Level 2 AI chatbot built with Django and OpenAI">
+  <title>AI Assistant</title>
+  <link rel="stylesheet" href="{% static 'chatbot/css/style.css' %}">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="chat-card" aria-label="AI chatbot">
+
+      <header class="chat-header">
+        <div class="brand">
+          <div class="bot-avatar">✦</div>
+          <div>
+            <h1>AI Assistant</h1>
+            <p><span class="status-dot"></span> Online</p>
+          </div>
+        </div>
+        <button id="clearChat" class="clear-button" type="button">Clear</button>
+      </header>
+
+      <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+
+      <div id="typingIndicator" class="typing hidden">
+        <span></span><span></span><span></span>
+        <em>Thinking...</em>
+      </div>
+
+      <form id="chatForm" class="chat-input-area">
+        {% csrf_token %}
+        <textarea
+          id="messageInput"
+          rows="1"
+          maxlength="12000"
+          placeholder="Type your message..."
+          aria-label="Message"></textarea>
+        <button id="sendButton" type="submit" aria-label="Send message">➤</button>
+      </form>
+
+      <p class="footer-note">AI can make mistakes. Check important information.</p>
+    </section>
+  </main>
+
+  <script src="{% static 'chatbot/js/chat.js' %}"></script>
+</body>
+</html>
